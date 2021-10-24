@@ -63,13 +63,17 @@ public class ReconFileGenerator implements CommandLineRunner {
             Aggregator key = entry1.getKey();
             Double value1 = entry1.getValue();
             Double value2 = aggregatedFulFill.get(key);
-            String sb = key.getAccount() + "," + key.getInstrument() + "," + key.getSide() +
+            String sb = key.getAccount() + "," + key.getInstrument() + "," + formatSideToLocal(key.getSide()) +
                     "," + df2.format(value1) + ",," +
-                    key.getAccount() + "," + key.getInstrument() + "," + key.getSide() +
+                    key.getAccount() + "," + key.getInstrument() + "," + formatSideToLocal(key.getSide()) +
                     "," + df2.format(value2);
             recon.add(sb);
         }
         FileManager.writeBufferedCSV(recon, "recon.csv");
+    }
+
+    private String formatSideToLocal(Character side) {
+        return side.toString().equals("1")?"C":"V";
     }
 
     private Map<Aggregator, Double> generateAggregatedAllMsgs() throws IOException {
