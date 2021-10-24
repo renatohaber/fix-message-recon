@@ -83,8 +83,9 @@ public class FileGenerator implements CommandLineRunner {
             generateQuantities(message, isPartial, null);
             generatePriceFields(message, null);
             // key to our last case
+            int tmp = (int) (Math.random() * 2 + 1);
             message.setField(new Account(generateAccount()));
-            message.setField(new Side(isPartial ? Side.BUY : Side.SELL));
+            message.setField(new Side(tmp == 1 ? Side.BUY : Side.SELL));
             message.setField(new Symbol(generateSymbol()));
         } else {
             generateQuantities(message, isPartial, parent);
@@ -153,7 +154,7 @@ public class FileGenerator implements CommandLineRunner {
         finish = Instant.now();
         timeElapsed = Duration.between(start, finish).toMillis();
         log.info(String.format("FileGenerator : %s : timeElapsed : %d ms",
-                System.getProperty("java.io.tmpdir")+"/executions.txt", timeElapsed));
+                System.getProperty("java.io.tmpdir") + "/executions.txt", timeElapsed));
     }
 
 }
