@@ -87,14 +87,16 @@ public class AllMsgsGenerator implements CommandLineRunner {
         FileManager.writeBufferedAllExecutions(result, "AllMsgs.csv");
         finish = Instant.now();
         timeElapsed = Duration.between(start, finish).toMillis();
-        log.info(String.format("FulFill : %s : timeElapsed : %d ms", "/tmp/AllMsgs.csv", timeElapsed));
+        log.info(String.format("AllMsgs : %s : timeElapsed : %d ms",
+                System.getProperty("java.io.tmpdir")+"/AllMsgs.csv", timeElapsed));
 
         // write FulFill
         start = Instant.now();
         FileManager.writeBuffered(fullFillExecutions, "FulFill.txt");
         finish = Instant.now();
         timeElapsed = Duration.between(start, finish).toMillis();
-        log.info(String.format("FulFill : %s : timeElapsed : %d ms", "/tmp/FulFill.txt", timeElapsed));
+        log.info(String.format("FulFill : %s : timeElapsed : %d ms",
+                System.getProperty("java.io.tmpdir")+"/FulFill.txt", timeElapsed));
 
     }
 }

@@ -152,7 +152,8 @@ public class FileGenerator implements CommandLineRunner {
         FileManager.writeBuffered(messages, "executions.txt");
         finish = Instant.now();
         timeElapsed = Duration.between(start, finish).toMillis();
-        log.info(String.format("FileGenerator : %s : timeElapsed : %d ms", "executions.txt", timeElapsed));
+        log.info(String.format("FileGenerator : %s : timeElapsed : %d ms",
+                System.getProperty("java.io.tmpdir")+"/executions.txt", timeElapsed));
     }
 
 }

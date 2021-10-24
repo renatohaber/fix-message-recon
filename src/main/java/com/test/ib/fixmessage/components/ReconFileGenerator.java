@@ -44,7 +44,8 @@ public class ReconFileGenerator implements CommandLineRunner {
         createReconFile(aggregatedAllMsgs, aggregatedFulFill);
         finish = Instant.now();
         timeElapsed = Duration.between(start, finish).toMillis();
-        log.info(String.format("ReconFileGenerator : recon file creation : recon.csv : timeElapsed : %d ms", timeElapsed));
+        log.info(String.format("ReconFileGenerator : recon file creation : %s : timeElapsed : %d ms",
+                System.getProperty("java.io.tmpdir")+"/recon.csv", timeElapsed));
     }
 
     private void createReconFile(Map<Aggregator, Double> aggregatedAllMsgs, Map<Aggregator, Double> aggregatedFulFill) throws IOException {
